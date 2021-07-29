@@ -1,3 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+#define ROW 3
+#define COL 3
+void game();
+void InitBoard(char board[ROW][COL],int row, int col);
+void DisplayBoard(char board[ROW][COL],int row,int col);
+void PlayerMove(char board[ROW][COL],int row,int col);
+void ComplayBoard(char board[ROW][COL],int row,int col);
+char InWin(char board[ROW][COL],int row,int col);
+
+#include"game.h"
+void game()
+{
+char ret=0;
+char board[ROW][COL]={0};
+InitBoard(board,ROW,COL);
+DisplayBoard(board,ROW,COL);
+
+while(1)
+{PlayerMove(board,ROW,COL);
+DisplayBoard(board,ROW,COL);
+ret=InWin(board,ROW,COL);
+if(ret!='C')
+{break;
+}
+ComplayBoard(board,ROW,COL);
+DisplayBoard(board,ROW,COL);
+ret=InWin(board,ROW,COL);
+if(ret!='C')
+{break;
+}
+}
+if(ret=='*')
+{printf("玩家赢\n");
+}
+else if(ret=='#')
+{printf("电脑赢\n");
+}
+else
+	{printf("平局\n");
+}
+
+}
+
+void A()
+{
+ printf("**********************\n");
+ printf("*** open:1 | exti:0***\n");
+ printf("**********************\n");
+}
+void test()
+{int input=0;
+srand((unsigned int)time(NULL));
+do
+{A();
+ printf("请选择：1 or 0\n"); 
+ scanf("%d",&input);
+ if(input==0)
+	printf("退出游戏\n");
+else if(input==1)
+{printf("三子棋\n");
+ break;
+}
+else
+	printf("无效数字，请重新输入\n");
+}while(input);
+}
+int main()
+{
+test();
+game();
+return 0;
+}
+
 #include"game.h"
 void InitBoard(char board[ROW][COL],int row, int col)
 {int i=0;
